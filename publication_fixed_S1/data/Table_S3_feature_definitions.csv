@@ -1,0 +1,59 @@
+Feature name,Meaning
+P_betti0_death_min,Minimum death filtration value of 0-dimensional topological features (connected atomic components) within the Phosphorus (P) sub-network.
+mean CovalentRadius,Composition-weighted average of the covalent radii of the constituent elements.
+avg_dev NUnfilled,Average deviation of the total number of unfilled valence electrons among the elements.
+avg_dev NpUnfilled,Average deviation of the number of unfilled p-orbital electrons among the elements.
+minimum NUnfilled,Minimum total number of unfilled valence electrons among the constituent elements.
+avg_dev SpaceGroupNumber,Average deviation of the space group numbers (symmetry classifications) of the elemental solids.
+mean NpUnfilled,Composition-weighted average of the number of unfilled p-orbital electrons.
+maximum NpUnfilled,Maximum number of unfilled p-orbital electrons among the constituent elements.
+avg_dev NpValence,Average deviation of the number of p-orbital valence electrons among the elements.
+Li_betti1_duration_max,Maximum duration (persistence) of 1-dimensional features (tunnels/channels) within the Lithium (Li) sub-network.
+Li_betti0_death_sum_weighted,Weighted sum of the death filtration values of 0-dimensional features within the Lithium (Li) sub-network.
+mean NdUnfilled,Composition-weighted average of the number of unfilled d-orbital electrons.
+mean GSvolume_pa,Composition-weighted average of the ground state volume per atom.
+betti1_duration_max,Maximum duration (persistence) of 1-dimensional features (tunnels/channels) in the pooled point clouds.
+betti1_birth_mean,Mean birth filtration value of 1-dimensional features (tunnels) in the pooled point clouds.
+betti0_death_std,Standard deviation of the death filtration value of 0-dimensional features in the pooled point clouds.
+Li_betti0_death_std,Standard deviation of the death filtration value of 0-dimensional features within the Lithium (Li) sub-network.
+avg_dev Row,Average deviation of the periodic table row (period) numbers of the constituent elements.
+Li_betti0_death_min,Minimum death filtration value of 0-dimensional features within the Lithium (Li) sub-network.
+mean NsValence,Composition-weighted average of the number of s-orbital valence electrons.
+avg_dev MendeleevNumber,Average deviation of the Mendeleev numbers (a measure of chemical similarity) of the elements.
+mean NdValence,Composition-weighted average of the number of d-orbital valence electrons.
+mean MendeleevNumber,Composition-weighted average of the Mendeleev numbers of the constituent elements.
+avg_dev Electronegativity,Average deviation of the electronegativity values of the constituent elements.
+avg_dev NsValence,Average deviation of the number of s-orbital valence electrons among the constituent elements.
+betti0_death_min,Minimum death filtration value of 0-dimensional features (connected components) in the pooled point clouds.
+avg_dev MeltingT,Average deviation of the melting temperatures of the constituent elements.
+avg_dev NValence,Average deviation of the total number of valence electrons among the constituent elements.
+mean NUnfilled,Composition-weighted average of the total number of unfilled valence electrons.
+mean NfUnfilled,Composition-weighted average of the number of unfilled f-orbital electrons.
+mean SpaceGroupNumber,Composition-weighted average of the space group numbers of the elemental solids.
+avg_dev GSvolume_pa,Average deviation of the ground state volume per atom of the constituent elements.
+mean Row,Composition-weighted average of the periodic table row (period) numbers of the constituent elements.
+betti0_death_max,Maximum death filtration value of 0-dimensional features (connected components) in the pooled point clouds.
+mean Column,Composition-weighted average of the periodic table column (group) numbers of the constituent elements.
+maximum Number,Maximum atomic number (Z) among the constituent elements.
+mean NpValence,Composition-weighted average of the number of p-orbital valence electrons.
+S_betti0_death_mean,Mean death filtration value of 0-dimensional features within the Sulfur (S) sub-network.
+avg_dev GSbandgap,Average deviation of the ground state bandgaps of the constituent elements.
+mean GSbandgap,Composition-weighted average of the ground state bandgaps of the constituent elements.
+mean MeltingT,Composition-weighted average of the melting temperatures of the constituent elements.
+betti0_death_sum_weighted,Weighted sum of the death filtration values of 0-dimensional features in the pooled point clouds.
+Li_betti0_death_mean,Mean death filtration value of 0-dimensional features within the Lithium (Li) sub-network.
+maximum MeltingT,Maximum melting temperature among the constituent elements in the material.
+avg_dev Number,Average deviation of the atomic numbers (Z) among the constituent elements.
+betti0_death_mean,Mean death filtration value of 0-dimensional features (connected components) in the pooled point clouds.
+betti1_duration_mean,Mean duration (persistence) of 1-dimensional features (tunnels) in the pooled point clouds.
+mean Number,Composition-weighted average of the atomic numbers (Z) of the constituent elements.
+betti1_duration_std,Standard deviation of 1-dimensional persistence durations in the pooled point clouds.
+mean Electronegativity,Composition-weighted average of the electronegativity of the elements.
+P_betti0_death_std,Standard deviation of the death filtration value of 0-dimensional features within the Phosphorus (P) sub-network.
+range GSvolume_pa,The difference between the maximum and minimum ground state volume per atom among the elements.
+maximum Electronegativity,Maximum elemental electronegativity among the constituent elements.
+O_betti1_birth_std,Standard deviation of the birth filtration value of 1-dimensional features (tunnels) within the Oxygen (O) sub-network.
+O_betti0_death_mean,Mean death filtration value of 0-dimensional features within the Oxygen (O) sub-network.
+S_betti0_death_std,Standard deviation of finite 0-dimensional death filtration values in S-centered point clouds.
+O_betti1_death_std,Standard deviation of the death filtration value of 1-dimensional features (tunnels) within the Oxygen (O) sub-network.
+avg_dev NdValence,Composition-weighted average absolute deviation of the number of d-orbital valence electrons.

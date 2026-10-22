@@ -1,0 +1,8 @@
+Set,Included descriptor blocks,Input,After |r| filter,Selected
+An,Li,35,22,6
+Can,O + P + S,105,55,16
+An+Can,Li + O + P + S,140,77,23
+Magpie,Composition,132,96,28
+Magpie+An,Composition + global + Li,202,140,42
+Magpie+Can,Composition + global + O + P + S,272,173,51
+Magpie+An+Can,Composition + global + Li + O + P + S,307,195,58

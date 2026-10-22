@@ -1,0 +1,9 @@
+# Starting environment for running archived programs; complete training not rerun.
+# Historical exact versions of XGBoost/SHAP/Optuna were not recovered.
+-r requirements-artifacts.txt
+matplotlib
+seaborn
+xgboost
+shap
+optuna
+tqdm

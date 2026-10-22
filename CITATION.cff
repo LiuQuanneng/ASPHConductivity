@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite this software and the associated manuscript."
+title: "Topological descriptors for improved prediction of ionic conductivity in solid-state electrolytes"
+type: software
+authors:
+  - family-names: Liu
+    given-names: Quanneng
+  - family-names: Wang
+    given-names: Shangning
+  - family-names: Zhao
+    given-names: Yuxi
+  - family-names: Yang
+    given-names: Jianfei
+  - family-names: Yang
+    given-names: Menghao
+  - family-names: Cai
+    given-names: Liming
+abstract: "Research code and data deposit covering seven descriptor combinations and six regression algorithms for solid-state electrolyte ionic conductivity."
+repository-code: "https://github.com/LiuQuanneng/ASPHConductivity"

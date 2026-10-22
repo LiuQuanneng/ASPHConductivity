@@ -1,0 +1,4 @@
+-r requirements-training.txt
+ripser
+pymatgen
+matminer

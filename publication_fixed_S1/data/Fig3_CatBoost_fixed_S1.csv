@@ -1,0 +1,8 @@
+combination,model,MAE,R2,run_origin
+An,CatBoost,1.2959932295519692,0.3876342820442022,"Fixed-parameter evaluation, 2026-10-22"
+Can,CatBoost,1.2399956460337167,0.4265249356161167,"Fixed-parameter evaluation, 2026-10-22"
+AnCan,CatBoost,1.071359985455824,0.5507364579118483,"Fixed-parameter evaluation, 2026-10-22"
+Magpie,CatBoost,0.8526654514040068,0.6813436082236722,"Fixed-parameter evaluation, 2026-10-22"
+Magpie-An,CatBoost,0.8095517442196172,0.7140919927873157,"Fixed-parameter evaluation, 2026-10-22"
+Magpie-Can,CatBoost,0.8215754321099048,0.7028245340555421,"Fixed-parameter evaluation, 2026-10-22"
+Magpie-AnCan,CatBoost,0.8042910522855499,0.7210358333226725,"Fixed-parameter evaluation, 2026-10-22"

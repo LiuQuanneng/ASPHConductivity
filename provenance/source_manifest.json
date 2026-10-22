@@ -1,0 +1,128 @@
+[
+  {
+    "file": "data/features/An.csv",
+    "sha256": "a80f4811174cb38adc7705bd82dd75477429f6214070c29b1c60dd2935717eba",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "An_topo_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_An.py",
+    "sha256": "4ee152097625855d04952d2305fccc9ebcf40f68bd027d119c1b9fe5330d29c7",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00train调参shap12.py"
+  },
+  {
+    "file": "data/features/Can.csv",
+    "sha256": "5ce8f92913d12b13e2ec3e8caffa58e7d84ed090daa83b0fb733094c3a15c868",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "Can_topo_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_Can.py",
+    "sha256": "aca5aad7a746a8a55cac78d6135bf76bc1ba2449e55c58614540fbbd18c7c0e9",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00train调参shap12.py"
+  },
+  {
+    "file": "data/features/AnCan.csv",
+    "sha256": "ddfab634b77f404acfb8eb9ccd8722bd0249c0a8b01c6af4e543433745c55676",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "AnCan_topo_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_AnCan.py",
+    "sha256": "e5ae1a69d37997945afc7d6949e5c924c4207b84910ca24b4e78c907d7eae288",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00train调参shap12.py"
+  },
+  {
+    "file": "data/features/Magpie.csv",
+    "sha256": "5814aece17d2d67e8fab3608870d3745591ec3755ef1caae6f5e32f960dc8542",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "material_features_ionic_conductivity_database_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_Magpie.py",
+    "sha256": "32c135a27b5d3e4e9a7c462d999eaf6801bb2ffaba164d514798a3920e9bb2f9",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00train调参shap12.py"
+  },
+  {
+    "file": "data/features/Magpie-An.csv",
+    "sha256": "7d5237da9046c296a61a1b663475c6aadfd41f9294239422c26d2d513c91b5d4",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "magpie_An_topo_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_Magpie-An.py",
+    "sha256": "3fb1ad47c79b0d7e6f28be6def78aaa90092a3001ab673cffb16c637369e8f12",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00train调参shap12.py"
+  },
+  {
+    "file": "data/features/Magpie-Can.csv",
+    "sha256": "c87f1da49fbf887e5ebbdcb49255adcee0abfea2dba284b078de4c284a5a26be",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "magpie_Can_topo_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_Magpie-Can.py",
+    "sha256": "49081a694d34e79e84df7d979b2ad933ba16cd74eae3297d84d1b7f103555fc1",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00train调参shap12.py"
+  },
+  {
+    "file": "data/features/Magpie-AnCan.csv",
+    "sha256": "66c73a8f71a9ee81dba2b6a4e5ee665da5681bb39aa7853f4569d45d3517d121",
+    "role": "model-ready feature matrix",
+    "transformation": "byte-identical copy",
+    "source_basename": "material_features_topo_ionic_conductivity_database_named_onedata.csv"
+  },
+  {
+    "file": "src/original/train_Magpie-AnCan.py",
+    "sha256": "507e1dae479cf76ebf6a7d52cffb064625bfbe00bdb35a0d61a44c9f8873b78a",
+    "role": "training reference implementation",
+    "transformation": "byte-identical copy",
+    "source_basename": "00traindeepseek2.py"
+  },
+  {
+    "file": "data/labels/training_labels_497.csv",
+    "source_sha256": "655c74698e82b887bb28851f6a03bdf908b65683de4e7ae09f1024a0ab4e0317",
+    "role": "label and literature-reference mapping",
+    "transformation": "select exact ID+target matches for the 497 feature rows; add ID column",
+    "source_basename": "ionic_conductivity_database.csv"
+  },
+  {
+    "file": "src/descriptors/feature_engineering.py",
+    "source_sha256": "127deadfcbb77fcdb616c3214add3bc07fefdfe96dc492e0cb009241bb80631c",
+    "role": "descriptor preparation source",
+    "transformation": "replace machine-specific data_dir only; algorithm unchanged; exact generating version unconfirmed",
+    "source_basename": "featureEngineeringAnCan3.py"
+  },
+  {
+    "file": "data/descriptor_resources/element_properties.csv",
+    "sha256": "1685ebafbc584ece13975a3a436e39b01303b92d82318fce90aae5fea503eb7d",
+    "role": "original elemental-property table",
+    "transformation": "byte-identical copy",
+    "source_basename": "element_properties.csv"
+  },
+  {
+    "file": "src/descriptors/material_features_from_csv.py",
+    "sha256": "af5c114dfdb02e803ce353853bf645c57797cafaac9e1c757db784078d5e92de",
+    "role": "historical Magpie feature generator",
+    "transformation": "byte-identical copy",
+    "source_basename": "material_features_from_csv.py"
+  }
+]

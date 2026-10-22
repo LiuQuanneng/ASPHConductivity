@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+!.env.example
+catboost_info/
+runs/
+data/structure_inputs/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-22",
+  "source_data_sha256": "66c73a8f71a9ee81dba2b6a4e5ee665da5681bb39aa7853f4569d45d3517d121",
+  "fixed_parameters": {
+    "iterations": 1000,
+    "learning_rate": 0.05254210669345883,
+    "depth": 5,
+    "l2_leaf_reg": 4.666963767236923,
+    "subsample": 0.836965827544817,
+    "colsample_bylevel": 0.6185801650879991,
+    "random_strength": 3.0769697743170483,
+    "min_data_in_leaf": 9
+  },
+  "samples": 497,
+  "original_features": 307,
+  "after_correlation": 195,
+  "selected": 58,
+  "feature_order_verified_against_CV": true,
+  "SHAP_additivity_verified": true,
+  "top20_final_CatBoost": [
+    "P_betti0_death_min",
+    "mean CovalentRadius",
+    "avg_dev NUnfilled",
+    "avg_dev NpUnfilled",
+    "minimum NUnfilled",
+    "avg_dev SpaceGroupNumber",
+    "mean NpUnfilled",
+    "maximum NpUnfilled",
+    "avg_dev NpValence",
+    "Li_betti1_duration_max",
+    "Li_betti0_death_sum_weighted",
+    "mean NdUnfilled",
+    "mean GSvolume_pa",
+    "betti1_duration_max",
+    "betti1_birth_mean",
+    "betti0_death_std",
+    "Li_betti0_death_std",
+    "avg_dev Row",
+    "Li_betti0_death_min",
+    "mean NsValence"
+  ],
+  "MAE_reduction_percent": 5.673315253808308,
+  "R2_relative_increase_percent": 5.825581192796636,
+  "top5_importance": [
+    {
+      "Feature": "P_betti0_death_min",
+      "mean_abs_SHAP": 0.34875728588929156
+    },
+    {
+      "Feature": "mean CovalentRadius",
+      "mean_abs_SHAP": 0.16664323343567577
+    },
+    {
+      "Feature": "avg_dev NUnfilled",
+      "mean_abs_SHAP": 0.1337185926580863
+    },
+    {
+      "Feature": "avg_dev NpUnfilled",
+      "mean_abs_SHAP": 0.12065471856476133
+    },
+    {
+      "Feature": "minimum NUnfilled",
+      "mean_abs_SHAP": 0.11428627847945394
+    }
+  ]
+}

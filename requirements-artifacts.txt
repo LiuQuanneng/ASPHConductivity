@@ -1,0 +1,6 @@
+# Observed successful artifact-loading environment, not an original training lockfile.
+numpy==2.3.5
+pandas==3.0.1
+scikit-learn==1.6.1
+catboost==1.2.10
+joblib==1.6.0

@@ -1,0 +1,12 @@
+{
+  "source": "Supplementary Information, Table S1",
+  "status": "Fixed parameters used for model evaluation",
+  "parameters_as_reported": {
+    "Decision Tree": "{'max_depth': 10, 'min_samples_split': 5, 'min_samples_leaf': 2}",
+    "Random Forest": "{'n_estimators': 200, 'max_depth': 10, 'min_samples_split': 5}",
+    "Gradient Boosting": "{'n_estimators': 200, 'learning_rate': 0.05, 'max_depth': 5, 'subsample': 0.8}",
+    "Support Vector Machine": "{'C': 10, 'epsilon': 0.1, 'kernel': 'rbf'}",
+    "XGBoost": "{'n_estimators': 1100, 'learning_rate': 0.024514348861202583, 'max_depth': 5, 'subsample': 0.6931879447423317, 'colsample_bytree': 0.6329027615565123, 'reg_alpha': 2.680507093650473e-06, 'reg_lambda': 8.119294212281446e-08, 'min_child_weight': 2}",
+    "CatBoost": "{'iterations': 1000, 'learning_rate': 0.05254210669345883, 'depth': 5, 'l2_leaf_reg': 4.666963767236923, 'subsample': 0.836965827544817, 'colsample_bylevel': 0.6185801650879991, 'random_strength': 3.0769697743170483, 'min_data_in_leaf': 9}"
+  }
+}
