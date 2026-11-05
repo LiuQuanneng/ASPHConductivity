@@ -1,0 +1,25 @@
+{
+  "CPU_smoke": {
+    "history_a": {
+      "state": "completed",
+      "start_step": 25200,
+      "current_ps": 25.22,
+      "target_ps": 25.22,
+      "device": "cpu",
+      "model_sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+      "wall_seconds": 26.78536319732666
+    },
+    "history_b": {
+      "state": "completed",
+      "start_step": 20000,
+      "current_ps": 20.02,
+      "target_ps": 20.02,
+      "device": "cpu",
+      "model_sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+      "wall_seconds": 9.370683908462524
+    }
+  },
+  "GPU_test": "not run; perform on destination",
+  "Linux_test": "not run; perform on destination",
+  "notes": "20 new steps per case from frozen state, separate from production. Package hash/trajectory checks run by scripts/verify.py."
+}

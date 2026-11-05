@@ -1,0 +1,138 @@
+"""Append-only continuation of two existing 900 K trajectories; bounded CPU run."""
+import os
+os.environ['TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD']='1'
+for key in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS'):
+    os.environ[key]=os.environ.get('MLIP_THREADS','2')
+import argparse, csv, ctypes, hashlib, json, time, traceback
+from pathlib import Path
+from datetime import datetime, timezone
+import numpy as np
+import torch
+from ase import units
+from ase.io import read, write
+from ase.io.trajectory import Trajectory
+from ase.constraints import FixCom
+from ase.md.langevin import Langevin
+
+ROOT=Path(__file__).resolve().parents[1]
+OUT=ROOT/'runs'
+SOURCES={c:ROOT/'inputs'/c for c in ('history_a','history_b')}
+def free_gib():
+    if os.name=='nt':
+        class Mem(ctypes.Structure):
+            _fields_=[('length',ctypes.c_ulong),('load',ctypes.c_ulong)]+[(k,ctypes.c_ulonglong) for k in ('total','avail','page','availpage','virtual','availvirtual','extended')]
+        m=Mem();m.length=ctypes.sizeof(m)
+        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m)):raise OSError('Memory query failed')
+        return m.avail/1024**3
+    values=dict(line.split(':',1) for line in Path('/proc/meminfo').read_text().splitlines())
+    return int(values['MemAvailable'].split()[0])/1024**2
+def dump(path,obj):
+    tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(obj,ensure_ascii=False,allow_nan=False),encoding='utf-8');tmp.replace(path)
+def stamp():return datetime.now(timezone.utc).isoformat()
+def frame_step(a):return int(a.info.get('total_step',a.info.get('thermal_step',a.info.get('time_fs',-1))))
+def frames_from(folder):
+    frames={}
+    for p in sorted(folder.glob('segment_*.traj')):
+        with Trajectory(str(p)) as t:
+            for a in t:
+                step=frame_step(a)
+                if step%20==0:frames[step]=a
+    return frames
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--case',choices=list(SOURCES),required=True);p.add_argument('--deadline',required=True);p.add_argument('--analyze-only',action='store_true');p.add_argument('--device',choices=['cpu','cuda'],default='cpu');p.add_argument('--model',type=Path,default=ROOT/'models/mace-mpa-0-medium.model');p.add_argument('--target-ps',type=float,default=50);p.add_argument('--output-root',type=Path,default=OUT);args=p.parse_args()
+    folder=args.output_root/args.case;folder.mkdir(parents=True,exist_ok=True)
+    if (folder/'result.json').exists() and not args.analyze_only:
+        return
+    source=SOURCES[args.case];target=round(args.target_ps*1000)
+    deadline=min(datetime.fromisoformat(args.deadline).timestamp(),time.time()+8*3600)
+    status={'case':args.case,'material':'Li7Y7ZrS16','mp_id':'mp-754856','pid':os.getpid(),'state':'starting','started_UTC':stamp(),'deadline_UTC':datetime.fromtimestamp(deadline,timezone.utc).isoformat(),'threads':int(os.environ.get('MLIP_THREADS','2')),'device':args.device,'target_ps':args.target_ps,'previous_ps':20,'current_ps':20,'temperature_target_K':900,'dt_fs':1,'source':str(source),'note':'Two different initialization histories, not a pure seed-equivalence test. Fixed expanded volume; transport not yet converged.'}
+    started=time.time();step=20000;writer=None;log=None;atoms=None;rng=None
+    def save():
+        status.update(updated_UTC=stamp(),wall_seconds=time.time()-started,free_RAM_GiB=free_gib());dump(folder/'status.json',status)
+    def guard():
+        if time.time()>=deadline:raise TimeoutError('Wall-clock limit; checkpoints retained')
+        if free_gib()<2:raise MemoryError('Free RAM below 2 GiB; checkpoints retained')
+    history=frames_from(source)
+    history.update(frames_from(folder))
+    assert 20000 in history and len(history[20000])==31
+    def analyze():
+        ts=np.array(sorted(history));arr=np.array([history[k].positions for k in ts]);sym=np.array(history[ts[0]].get_chemical_symbols());fw=sym!='Li'
+        pos=arr-arr[:,fw].mean(axis=1)[:,None,:];keep=ts>=5000;pos=pos[keep];ts=ts[keep]
+        assert np.all(np.diff(ts)==20),'Noncontinuous trajectory samples'
+        lags=[]
+        for fs in (100,500,1000,2000,5000,10000,15000,20000):
+            n=fs//20
+            if n>=len(ts):continue
+            d=np.sum((pos[n:]-pos[:-n])**2,axis=2)
+            lags.append({'lag_ps':fs/1000,'origins':len(d),'Li_MSD_A2':float(d[:,~fw].mean()),'framework_MSD_A2':float(d[:,fw].mean()),'per_Li_MSD_A2':d[:,~fw].mean(axis=0).tolist()})
+        baseline=arr[0]-arr[0,fw].mean(axis=0);rel=arr-arr[:,fw].mean(axis=1)[:,None,:]-baseline
+        stride=max(1,len(arr)//600)
+        series=[{'time_ps':float(k/1000),'Li_MSD_A2':float((rel[i,~fw]**2).sum(axis=1).mean()),'framework_MSD_A2':float((rel[i,fw]**2).sum(axis=1).mean())} for i,k in enumerate(sorted(history)) if i%stride==0 or i==len(arr)-1]
+        blocks=[]
+        for lo in range(5000,int(ts[-1])-4999,5000):
+            block=pos[(ts>=lo)&(ts<=lo+5000)];n=50
+            blocks.append({'start_ps':lo/1000,'end_ps':(lo+5000)/1000,'Li_MSD_1ps_A2':float(np.sum((block[n:,~fw]-block[:-n,~fw])**2,axis=2).mean())})
+        dump(folder/'analysis.json',{'updated_UTC':stamp(),'observed_through_ps':float(ts[-1]/1000),'discard_ps':5,'lags':lags,'blocks':blocks,'series':series,'note':'Single-origin displacement curves are live diagnostics, not diffusivity. Lag MSD uses overlapping origins; no D or conductivity fitted.'})
+    if args.analyze_only:
+        analyze();return
+    import sys
+    if os.name=='nt':
+        import msvcrt
+        lock=(folder/'worker.lock').open('a+b');lock.seek(0)
+        if lock.read(1)==b'':lock.write(b'0');lock.flush()
+        lock.seek(0);msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
+    else:
+        import fcntl
+        lock=(folder/'worker.lock').open('a+b');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    try:
+        if free_gib()<4:raise MemoryError('Admission requires 4 GiB free RAM')
+        cps=sorted(folder.glob('checkpoint_*.json'))
+        cp=cps[-1] if cps else sorted(source.glob('checkpoint_*.json'))[-1]
+        meta=json.loads(cp.read_text());step=int(meta.get('step',meta.get('completed_steps',0)))
+        atoms=read(cp.parent/meta['trajectory']) if 'trajectory' in meta else read(cp.with_suffix('.traj'))
+        rs=meta.get('rng',meta.get('rng_state'));rng=np.random.RandomState();rng.set_state((rs[0],np.array(rs[1],dtype=np.uint32),rs[2],rs[3],rs[4]))
+        assert 20000<=step<=target
+        history={k:v for k,v in history.items() if k<=step}
+        if not cps:
+            ref=history[step];assert np.allclose(atoms.positions,ref.positions,atol=1e-10) and np.allclose(atoms.get_momenta(),ref.get_momenta(),atol=1e-10)
+        status.update(checkpoint_source=str(cp),checkpoint_sha256=hashlib.sha256(cp.read_bytes()).hexdigest(),start_step=step,current_ps=step/1000,natoms=len(atoms),volume_A3=atoms.get_volume(),state='loading_model');save();analyze()
+        import platform, importlib.metadata
+        status['environment']={'python':platform.python_version(),'platform':platform.platform(),'torch':torch.__version__,'cuda_runtime':torch.version.cuda,'gpu':torch.cuda.get_device_name(0) if args.device=='cuda' and torch.cuda.is_available() else None,'packages':{n:importlib.metadata.version(n) for n in ('ase','numpy','mace-torch','e3nn')}}
+        torch.set_num_threads(int(os.environ.get("MLIP_THREADS","2")));torch.set_num_interop_threads(1);torch.set_default_dtype(torch.float32)
+        from mace.calculators import MACECalculator
+        weight=args.model;sha=hashlib.sha256(weight.read_bytes()).hexdigest()
+        assert sha=='75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638'
+        atoms.calc=MACECalculator(model_paths=str(weight),device=args.device,default_dtype='float32');atoms.set_constraint(FixCom());status['model_sha256']=sha
+        guard();atoms.get_forces()
+        dyn=Langevin(atoms,units.fs,temperature_K=900,friction=.01/units.fs,fixcm=False,rng=rng)
+        seg=len(list(folder.glob('segment_*.traj')))+1
+        writer=Trajectory(str(folder/f'segment_{seg:03d}.traj'),'w',atoms)
+        log=(folder/f'samples_{seg:03d}.csv').open('w',newline='');cw=csv.writer(log);cw.writerow(['total_step','time_ps','temperature_K','pressure_GPa','energy_eV'])
+        def checkpoint():
+            name=f'checkpoint_{step:08d}';write(folder/(name+'.traj'),atoms);r=rng.get_state()
+            dump(folder/(name+'.json'),{'step':step,'trajectory':name+'.traj','rng':[r[0],r[1].tolist(),r[2],r[3],r[4]],'model_sha256':sha,'dt_fs':1,'temperature_K':900})
+        while step<target:
+            guard();dyn.run(1);step+=1
+            if step%20==0:
+                temp=float(atoms.get_temperature());force=atoms.get_forces()
+                if not np.isfinite(atoms.positions).all() or not np.isfinite(force).all() or not np.isfinite(temp) or temp>3000:raise ValueError('Nonfinite state or temperature >3000 K')
+                ds=atoms.get_all_distances(mic=True);np.fill_diagonal(ds,np.inf)
+                if ds.min()<1:raise ValueError('Minimum pair distance <1 A')
+                pressure=float(-atoms.get_stress(include_ideal_gas=True)[:3].mean()*160.21766208)
+                atoms.info.update(total_step=step,time_fs=step);writer.write(atoms);history[step]=atoms.copy()
+                cw.writerow([step,step/1000,temp,pressure,float(atoms.get_total_energy())]);log.flush()
+                status.update(state='running',current_ps=step/1000,temperature_K=temp,pressure_GPa=pressure)
+            if step%100==0:
+                checkpoint();save()
+            if step%500==0:analyze()
+        checkpoint();write(folder/'final.traj',atoms);status['state']='completed';dump(folder/'result.json',{'state':'completed','total_ps':args.target_ps,'added_ps':args.target_ps-status['start_step']/1000,'dt_fs':1,'model_sha256':sha})
+    except Exception as e:
+        status.update(state='stopped',error=str(e),traceback=traceback.format_exc())
+    finally:
+        if writer:writer.close()
+        if log:log.close()
+        analyze();save();lock.close()
+    if status['state']!='completed':raise SystemExit(1)
+if __name__=='__main__':main()
+

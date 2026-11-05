@@ -1,0 +1,6 @@
+runs/
+models/*.model
+.venv/
+__pycache__/
+*.pyc
+inputs/*/segment_*.traj

@@ -1,0 +1,166 @@
+{
+  "mp-37879": {
+    "segments": [
+      {
+        "file": "segment_001.traj",
+        "start_fs": 0.0,
+        "end_fs": 1160.0
+      },
+      {
+        "file": "segment_002.traj",
+        "start_fs": 1180.0,
+        "end_fs": 10000.0
+      }
+    ],
+    "duplicate_frame_checks": [],
+    "max_raw_minus_MIC_increment_A": 3.6506759942727966e-16,
+    "max_interframe_displacement_A": 0.8602732879154718,
+    "unique_frames": 501,
+    "per_Li_lags": [
+      {
+        "lag_fs": 1000,
+        "overlapping_origins": 351,
+        "per_Li_MSD_A2": [
+          0.5113175527012381,
+          0.4876092351326102,
+          0.5440906090619544,
+          0.4728103830525608,
+          0.5481623991671855,
+          0.5285495837195142,
+          0.5588267588974472,
+          0.42314367421705623,
+          0.48930386619392136,
+          0.47865613203793633,
+          0.5595753406691644,
+          0.515574102518717,
+          0.4596251047275131,
+          0.5956668012169304,
+          0.44368183096908004,
+          0.49241651204967973
+        ]
+      },
+      {
+        "lag_fs": 2000,
+        "overlapping_origins": 301,
+        "per_Li_MSD_A2": [
+          0.4866150706898353,
+          0.47934630523772576,
+          0.4865553130112441,
+          0.46422243342158764,
+          0.59101380168592,
+          0.501008481980058,
+          0.5332477094947236,
+          0.4082097484308909,
+          0.5018254630378736,
+          0.4732817991678279,
+          0.6068223433026719,
+          0.5002040457704987,
+          0.47406816296800275,
+          0.5882263137948108,
+          0.423006635879619,
+          0.5097425656673399
+        ]
+      },
+      {
+        "lag_fs": 5000,
+        "overlapping_origins": 151,
+        "per_Li_MSD_A2": [
+          0.5286658564923833,
+          0.36771158195311954,
+          0.43951713539661263,
+          0.46812981110765195,
+          0.6416765569710984,
+          0.512411962584429,
+          0.47261553989617433,
+          0.423296029177702,
+          0.523050174577271,
+          0.5662025487513406,
+          0.5160852432826032,
+          0.48153778871685965,
+          0.4937488009212247,
+          0.5466396568646074,
+          0.4339961002794366,
+          0.4453211659465751
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "start_fs": 2000,
+        "end_fs": 6000,
+        "samples": 200,
+        "T_K": 877.8705186031528,
+        "pressure_GPa": 2.6637970285
+      },
+      {
+        "start_fs": 6000,
+        "end_fs": 10000,
+        "samples": 200,
+        "T_K": 891.7643663390211,
+        "pressure_GPa": 2.6599070300000007
+      }
+    ],
+    "limits": "Continuity audit checks saved positions and timestamps, not exact bitwise reproducibility of stochastic restart. Overlapping origins are not independent."
+  },
+  "mp-557892": {
+    "segments": [
+      {
+        "file": "segment_001.traj",
+        "start_fs": 0.0,
+        "end_fs": 9100.0
+      },
+      {
+        "file": "segment_002.traj",
+        "start_fs": 9120.0,
+        "end_fs": 10000.0
+      }
+    ],
+    "duplicate_frame_checks": [],
+    "max_raw_minus_MIC_increment_A": 1.2412670766236366e-16,
+    "max_interframe_displacement_A": 0.710443259224056,
+    "unique_frames": 501,
+    "per_Li_lags": [
+      {
+        "lag_fs": 1000,
+        "overlapping_origins": 351,
+        "per_Li_MSD_A2": [
+          0.6813994066941362,
+          0.7601169418167639
+        ]
+      },
+      {
+        "lag_fs": 2000,
+        "overlapping_origins": 301,
+        "per_Li_MSD_A2": [
+          0.75802065260585,
+          0.6276760993656638
+        ]
+      },
+      {
+        "lag_fs": 5000,
+        "overlapping_origins": 151,
+        "per_Li_MSD_A2": [
+          0.5484171903025524,
+          0.8666977608589156
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "start_fs": 2000,
+        "end_fs": 6000,
+        "samples": 200,
+        "T_K": 839.2490498092599,
+        "pressure_GPa": 1.02132131567
+      },
+      {
+        "start_fs": 6000,
+        "end_fs": 10000,
+        "samples": 200,
+        "T_K": 896.9165015226549,
+        "pressure_GPa": 1.1981145289135
+      }
+    ],
+    "limits": "Continuity audit checks saved positions and timestamps, not exact bitwise reproducibility of stochastic restart. Overlapping origins are not independent."
+  }
+}

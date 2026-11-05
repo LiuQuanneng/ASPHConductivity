@@ -1,0 +1,22 @@
+{
+  "snapshot_UTC": "2026-11-05T01:56:40.683777+00:00",
+  "cases": {
+    "history_a": {
+      "snapshot_step": 25200,
+      "snapshot_ps": 25.2,
+      "frames": 1261,
+      "natoms": 31,
+      "volume_A3": 673.5821801305175,
+      "source_checkpoint": "extension_20261105/history_a/checkpoint_00025200.json"
+    },
+    "history_b": {
+      "snapshot_step": 20000,
+      "snapshot_ps": 20.0,
+      "frames": 1001,
+      "natoms": 31,
+      "volume_A3": 673.5821801305175,
+      "source_checkpoint": "confirmatory_20261104/seed2/mp-754856/screen900_confirm/checkpoint_00020000.json"
+    }
+  },
+  "note": "Frozen migration snapshot. Original computer continues separately. Never merge overlapping continuations."
+}

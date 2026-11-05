@@ -1,0 +1,31 @@
+2026-11-05 新一轮候选复核（文献查新，不是新颖性认证）
+
+正在执行：Li7Y7ZrS16 mp-754856，两条31原子900 K历史轨迹，各从20 ps续至目标50 ps。各自原有体积、1 fs步长、Langevin摩擦0.01/fs、MACE-MPA-0 float32保持不变。断点恢复位置、动量和随机数状态；新的轨迹保存在extension_20261105，旧数据只读。两历史初始化过程不同，不合并称为严格独立同协议种子。顺序2线程，合计8小时硬上限，入场4GiB、运行2GiB内存门槛。队列2026-11-05 09:36新加坡启动，最晚17:36停止。仍不输出正式D/sigma。
+实时只读界面：http://127.0.0.1:8765/，5秒刷新，计算每100步保存断点、每500步更新运动分析；服务器最长12小时。初始20ps多起点MSD与旧matched_seed_comparison一致；浏览器已核对曲线/表格/实时状态。历史A从20ps位置和动量一致性断言通过。
+
+额外候选：以下数值严格来自ASPHConductivity_GitHub_upload/publication_fixed_S1/data/candidate_predictions_fixed_S1.csv，不是实验或MD。
+1. K2Li14Zr3O14 mp-17208：排名88，预测0.0154275 mS/cm，带隙4.356eV，33原子，Immm，Ehull0。本轮精确组成及别名检索未找到明确的定量锂离子电导率/MD文献。已有介电性质研究；Caltech原预测表ICSD65445，非理论结构，MP分类评分0.059978604、class0。不能称首次离子导体预测。作为不含Pb的富锂氧化物条件候选，优先结构迁移通道和模型检查；预测值本身不构成高电导证据。
+2. Na2Li3GaO4 mp-540945：排名76，预测0.0188675 mS/cm，带隙3.5213eV，40原子，Pnnm，Ehull0。未找到明确的定量锂电导/迁移研究；已找到NIMS声子数据。Caltech ICSD37071、class0，已被分类筛查。可能的研究空间是Li/Na分离输运；不能把总离子运动归属Li。不是已认证新高导材料。
+3. Na3LiWO5 mp-557309：排名55，预测0.0286230 mS/cm，带隙3.8186eV，20原子，P-1，Ehull0。精确式/倍式Na6Li2W2O10检索不足，原始合成及输运文献待核。Caltech ICSD49027、class0；已有介电表记录。Li占比较低和Li/Na混合输运需要审查，优先级低于上述两者。
+4. Sr2Li3TaN4 mp-541569：排名71，预测0.0210353 mS/cm，40原子。发现2025组成模型论文SI索引中确切组成与数值-3.161970711；原始表头和单位未取得，不能擅自换算，但已有定量预测先例风险很高，暂不作为新颖性优先对象。Caltech另有ICSD84716、class0。
+
+排除/暂缓线索：
+Li4Re6S11：2022原始论文预印本SI明确提到Kahle等已有MD筛查；且2025组成预测SI索引有该组成。应先找原研究，不作首次MD候选。
+Li7VN4：有1996年baroelectric/conductivity研究线索和负极涂层专利；具体原文未取得，暂缓而非认证新颖性。
+Li3P11(H3N)17：对应[Li(NH3)4]3P11·5NH3含氨加合物。原始制备研究在液氨条件；900 K晶体保相和失氨风险尚未证实，不能把它直接作为常规无机高温快筛对象。
+LiLa5Ti8O24：已有锂镧钛氧体系研究命中，需精确有序相/缺陷核对，不凭组成稀少认定新。
+Li2Ti6PbO14：没有足够的定量输运来源，含Pb且Li占比低，本轮不优先。
+
+来源：
+Caltech原CSV（本地直接逐行核对）：overnight/literature/Caltech2025_icsd_and_materialsproject_Li_ionic_conductivity_predictions.csv
+公开地址 https://data.caltech.edu/records/23mvv-6gk43
+固定参数预测表路径见上；其带隙/Ehull为本地元数据，未重新更新MP。
+介电表 https://journals.aps.org/prmaterials/supplemental/10.1103/PhysRevMaterials.4.103801/supplemental.pdf
+Na2Li3GaO4声子 https://mdrs-external.nims.go.jp/filesets/e11cb43b-7422-4da3-a074-f79f7695d56d?locale=en
+组成模型正文 https://doi.org/10.1039/D5QM00438A
+组成模型SI https://www.rsc.org/suppdata/d5/qm/d5qm00438a/d5qm00438a1.pdf （搜索索引有Sr2Li3TaN4/Li4Re6S11；直接下载404，单位和表头待核）
+Li4Re6S11先例引用 https://chemrxiv.org/engage/api-gateway/chemrxiv/assets/orp/resource/item/62c76c4e6383267b0044a272/original/supporting-information-for-identification-of-potential-solid-state-li-ion-conductors-with-semi-supervised-learning.pdf
+含氨化合物原文 https://electronicsandbooks.com/edt/manual/Magazine/C/Chemical%20Communications%20RSC/1996/CC9960002023.pdf
+LiLa5Ti8O24线索 https://www.osti.gov/servlets/purl/1647565
+
+目前没有新增已证明同时具备新颖性和高电导的候选。本轮未启动其他材料的MD，计算资源用于用户指定的Li7Y7ZrS16延长。

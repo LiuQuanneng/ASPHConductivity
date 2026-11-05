@@ -1,0 +1,18 @@
+Novelty follow-up, 2026-11-05
+Scope: exact compositions Li7Y7ZrS16 (mp-754856) and Rb2Li14Pb3O14 (mp-504810). Literature audit only; no new MD or DFT.
+
+Verified primary dataset: https://data.caltech.edu/records/23mvv-6gk43
+Archived original CSV: overnight/literature/Caltech2025_icsd_and_materialsproject_Li_ionic_conductivity_predictions.csv
+mp-754856: original file line 5210; formula Li7Y7Zr1S16; prediction_mean_mp 0.1610392; predicted_is_superionic_mp 0; theoretical TRUE; no ICSD ID in this row.
+mp-504810: original file line 10319; ICSD 35405; prediction_mean_mp 0.1232697; prediction_mean_icsd 0.06415992; both predicted_is_superionic flags 0; theoretical FALSE.
+These are published classification predictions, not conductivity in S/cm. No claim of first ionic-conductor screening is valid for either compound. Class 0 does not establish experimental insulation.
+
+Li7Y7ZrS16: 2019 Muy SI Table S1 exact ID: E_hull 0.0047 eV/atom, Li-band centre 24.346 meV, stability window 0.73 V. The 0.73 value is NOT conductivity or migration activation energy. Source https://www.cell.com/article/S2589004219301737/pdf ; archived Muy2019_SI.txt headers and exact row verified.
+Coating SI exact row mp-754856 P2/m has interface reaction energies 0 and 0, not conductivity: https://www.rsc.org/suppdata/d1/ta/d1ta04987a/d1ta04987a1.pdf . Indexed content available; direct current access failed.
+Known LOTF-MD conducting relative Li7Y7Zr9S32 mp-767467 is a DIFFERENT composition. Do not transfer its transport results to mp-754856. Exact-composition quantitative conductivity/MD prior remains unresolved; full primary article/SI access incomplete. Existing project MD did not demonstrate robust sustained diffusion. Do not extend simply to obtain a positive outcome.
+
+Rb2Li14Pb3O14: exact compound appears in dielectric SI https://journals.aps.org/prmaterials/supplemental/10.1103/PhysRevMaterials.4.103801/supplemental.pdf and NIMS phonon/thermal dataset https://mdr.nims.go.jp/filesets/a5f1e027-114a-4dab-a11a-3317abe24d28 . Neither is ionic conductivity.
+Original synthesis/structure lead: Brazel and Hoppe, ZAAC 498, 167-173, DOI 10.1002/zaac.19834980322, title Ueber quaternaere Oxoplumbate(IV). Zur Kenntnis von Rb2Li14[Pb3O14] und Cs2Li14[Pb3O14]. Publisher access failed; secondary abstract describes Immm and preparation. Original full text and publication-date metadata require primary verification; do not adopt secondary 2004 upload date as original year. Experimental provenance independently indicated by Caltech ICSD35405/theoreticalFALSE row, not proof of conductivity measurement.
+No exact-compound quantitative ionic conductivity, migration barrier or MD paper located in this targeted search. This is a bounded search result, not proof of absence. Retain as conditional transport-mechanism candidate; Pb content and electrochemical stability need consideration. No computational validation has been performed in this follow-up.
+
+Decision: neither candidate meets strict never-previously-predicted ionic-conductor novelty. Rb oxide may retain quantitative transport-study scope; sulfide also unresolved but existing project dynamics weak. Priority is primary full-text/phase/defect checks and model feasibility, not declaring a novel high-conductivity electrolyte.
