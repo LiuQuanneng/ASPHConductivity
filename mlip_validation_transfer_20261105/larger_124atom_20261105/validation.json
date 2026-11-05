@@ -1,0 +1,50 @@
+{
+  "material": "Li7Y7ZrS16",
+  "mp_id": "mp-754856",
+  "natoms": 124,
+  "Li_atoms": 28,
+  "repeat": [
+    1,
+    2,
+    2
+  ],
+  "temperature_K": 900,
+  "production_ps": 10,
+  "dt_fs": 1,
+  "volume_A3": 2694.3287205220704,
+  "cell_A": [
+    [
+      15.738317390433867,
+      0.0,
+      9.636940008080022e-16
+    ],
+    [
+      -7.666695931283922e-16,
+      12.520664630196727,
+      4.519568771178483
+    ],
+    [
+      0.0,
+      0.0,
+      13.673034140226596
+    ]
+  ],
+  "unique_production_frames": 501,
+  "frame_interval_fs": 20,
+  "duplicate_restart_times_fs": [
+    6000.0,
+    6020.0,
+    6040.0,
+    6060.0
+  ],
+  "checkpoint": "raw/screen900_confirm/checkpoint_00010000.json",
+  "checks": [
+    "124 atoms throughout production",
+    "continuous 0-10ps at 20fs",
+    "overlapping restart frames positions/momenta agree",
+    "final checkpoint/last frame/final.traj positions and momenta agree",
+    "RandomState restores successfully"
+  ],
+  "no_new_MD": true,
+  "note": "Existing finite-size screen, not finite-size convergence. Generic 31-atom transfer worker is not compatible."
+}
